@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace DTOLib
 {
-    public class Class1
+    public abstract class DTO
     {
+    }
+
+    public class DTO1 : DTO
+    {
+        public int intField;
+        public float floatField;
+        public byte byteField;
+        public char charField;
+        protected int protectedField;
+        public int Property { get; set; }
+        public DateTime dat;
+        public string str;
     }
 }

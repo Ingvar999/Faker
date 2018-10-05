@@ -49,5 +49,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTOLib\DTOLib.csproj">
+      <Project>{b2d11516-f0b0-41f5-b05a-f8a2cf2481ee}</Project>
+      <Name>DTOLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FakerLib\FakerLib.csproj">
+      <Project>{1ec1e05b-9f00-4a88-b615-373d0647a4e2}</Project>
+      <Name>FakerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

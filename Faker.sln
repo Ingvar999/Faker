@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faker", "Faker\Faker.csproj", "{D65159CB-9433-4547-96E3-3AD6B90F18D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOLib", "DTOLib\DTOLib.csproj", "{B2D11516-F0B0-41F5-B05A-F8A2CF2481EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib", "FakerLib\FakerLib.csproj", "{1EC1E05B-9F00-4A88-B615-373D0647A4E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D65159CB-9433-4547-96E3-3AD6B90F18D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D65159CB-9433-4547-96E3-3AD6B90F18D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D65159CB-9433-4547-96E3-3AD6B90F18D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D11516-F0B0-41F5-B05A-F8A2CF2481EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D11516-F0B0-41F5-B05A-F8A2CF2481EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D11516-F0B0-41F5-B05A-F8A2CF2481EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D11516-F0B0-41F5-B05A-F8A2CF2481EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC1E05B-9F00-4A88-B615-373D0647A4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC1E05B-9F00-4A88-B615-373D0647A4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC1E05B-9F00-4A88-B615-373D0647A4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC1E05B-9F00-4A88-B615-373D0647A4E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
