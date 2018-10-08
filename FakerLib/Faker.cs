@@ -35,16 +35,8 @@ namespace FakerLib
             creationsStack = new Dictionary<int, int>();
         }
 
-        private object GenerateDTO(Type T)
+        private object CreateByConstructor(Type T)
         {
-            if (creationsStack.TryGetValue(T.GetHashCode(), out int value))
-            {
-                if (value >= 3)
-                    return null;
-                creationsStack[T.GetHashCode()] = value + 1;
-            }
-            else
-                creationsStack.Add(T.GetHashCode(), 1);
             ConstructorInfo[] constructors = T.GetConstructors();
             ConstructorInfo constructor = constructors[0];
             for (int i = 1; i < constructors.Length; ++i)
@@ -55,23 +47,41 @@ namespace FakerLib
             for (int i = 0; i < args.Length; ++i)
                 if (generatorsList.TryGetValue(parameters[i].ParameterType.GetHashCode(), out IGenerator generator))
                     args[i] = generator.Generate();
-            object res = constructor.Invoke(args);
+            return constructor.Invoke(args);
+        }
+
+        private object GenerateArray(Type T)
+        {
+            var arr = T.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { 5 });
+            var temp = Activator.CreateInstance(typeof(List<>).MakeGenericType(T.GetElementType()));
+            int hash = T.GetElementType().GetHashCode();
+            if (generatorsList.TryGetValue(hash, out IGenerator generator))
+            {
+                for (int i = 0; i < 5; ++i)
+                    ((IList)temp).Add(generator.Generate());
+                ((IList)temp).CopyTo((Array)arr, 0);
+            }
+            return arr;
+        }
+
+        private object GenerateDTO(Type T)
+        {
+            if (creationsStack.TryGetValue(T.GetHashCode(), out int value))
+            {
+                if (value >= 3)
+                    return null;
+                creationsStack[T.GetHashCode()] = value + 1;
+            }
+            else
+                creationsStack.Add(T.GetHashCode(), 1);
+            object res = CreateByConstructor(T);
 
             FieldInfo[] fields = T.GetFields();
             foreach (var field in fields)
             {
                 if (field.FieldType.IsArray)
                 {
-                    var arr = field.FieldType.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { 5 }); 
-                    var temp = Activator.CreateInstance(typeof(List<>).MakeGenericType(field.FieldType.GetElementType()));
-                    int hash = field.FieldType.GetElementType().GetHashCode();
-                    if (generatorsList.TryGetValue(hash, out IGenerator generator))
-                    {
-                        for (int i = 0; i < 5; ++i)
-                           ((IList)temp).Add(generator.Generate());
-                        ((IList)temp).CopyTo((Array)arr, 0);
-                        field.SetValue(res, arr);
-                    }
+                    field.SetValue(res, GenerateArray(field.FieldType));
                 }
                 else
                 {
@@ -90,9 +100,23 @@ namespace FakerLib
             PropertyInfo[] properties = T.GetProperties();
             foreach (var property in properties)
             {
-                int hash = property.PropertyType.GetHashCode();
-                if (generatorsList.TryGetValue(hash, out IGenerator generator))
-                    property.SetValue(res, generator.Generate());
+                if (property.PropertyType.IsArray)
+                {
+                    property.SetValue(res, GenerateArray(property.PropertyType));
+                }
+                else
+                {
+                    if (property.PropertyType.IsSubclassOf(typeof(DTO)))
+                    {
+                        property.SetValue(res, GenerateDTO(property.PropertyType));
+                    }
+                    else
+                    {
+                        int hash = property.PropertyType.GetHashCode();
+                        if (generatorsList.TryGetValue(hash, out IGenerator generator))
+                            property.SetValue(res, generator.Generate());
+                    }
+                }
             }
             creationsStack[T.GetHashCode()]--;
             return res;
