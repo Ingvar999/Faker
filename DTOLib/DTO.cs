@@ -20,5 +20,14 @@ namespace DTOLib
         public int Property { get; set; }
         public DateTime dat;
         public string str;
+        public int[] array;
+        public DTO1 dto;
+
+        public DTO1() { }
+
+        public DTO1(int a)
+        {
+            protectedField = a;
+        }
     }
 }

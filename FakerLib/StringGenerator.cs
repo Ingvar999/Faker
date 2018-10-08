@@ -9,6 +9,12 @@ namespace FakerLib
     class StringGenerator : IGenerator
     {
         private static string symbols = "1234567890-=!@#$%^&*()_+qwertyuiop[]asdfghjkl;'zxcvbnm,.QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?";
+        public Type TargetType { get; }
+
+        public StringGenerator()
+        {
+            TargetType = typeof(string);
+        }
 
         public object Generate()
         {

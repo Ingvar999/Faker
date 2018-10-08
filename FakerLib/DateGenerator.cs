@@ -8,6 +8,13 @@ namespace FakerLib
 {
     class DateGenerator : IGenerator
     {
+        public Type TargetType { get; }
+
+        public DateGenerator()
+        {
+            TargetType = typeof(DateTime);
+        }
+
         public object Generate()
         {
             Random rand = new Random();
