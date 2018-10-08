@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Interface;
 
-namespace FakerLib
+namespace BasicGenerators
 {
     public class IntGenerator : IGenerator
     {
@@ -17,7 +14,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             int res = rand.Next();
             return res;
         }
@@ -34,7 +31,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             long res = rand.Next();
             return res;
         }
@@ -51,7 +48,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             byte res = (byte)rand.Next();
             return res;
         }
@@ -67,7 +64,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             short res = (short)rand.Next();
             return res;
         }
@@ -83,7 +80,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             char res = (char)rand.Next();
             return res;
         }
@@ -99,7 +96,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             float res = (float)(rand.Next() + rand.NextDouble());
             return res;
         }
@@ -116,8 +113,25 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             double res = rand.Next() + rand.NextDouble();
+            return res;
+        }
+    }
+
+    public class BoolGenerator : IGenerator
+    {
+        public Type TargetType { get; }
+
+        public BoolGenerator()
+        {
+            TargetType = typeof(double);
+        }
+
+        public object Generate()
+        {
+            Random rand = new Random(DateTime.Now.Millisecond);
+            bool res = rand.Next(2) > 0;
             return res;
         }
     }

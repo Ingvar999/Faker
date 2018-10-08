@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Interface;
 
 namespace FakerLib
 {
@@ -17,7 +14,7 @@ namespace FakerLib
 
         public object Generate()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             DateTime res = new DateTime((long)rand.Next() << 28);
             return res;
         }

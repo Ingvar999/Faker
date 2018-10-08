@@ -12,7 +12,7 @@ namespace FakerMain
     {
         static void Main(string[] args)
         {
-            var faker = new Faker("");
+            var faker = new Faker();
             DTO1 obj = faker.Create<DTO1>();
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FakerLib
+namespace Interface
 {
     public interface IGenerator
     {

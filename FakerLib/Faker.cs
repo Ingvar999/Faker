@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Interface;
+using System.IO;
 using System.Reflection;
 using DTOLib;
 
@@ -14,25 +14,37 @@ namespace FakerLib
         private Dictionary<int, IGenerator> generatorsList;
         private Dictionary<int, int> creationsStack;
 
-        public Faker() {
+        public Faker()
+            : this("D:\\git\\СПП\\Faker\\Generators")
+        {
             
         }
 
         public Faker(string pluginsPath)
         {
-            generatorsList = new Dictionary<int, IGenerator>
-            {
-                { typeof(int).GetHashCode(), new IntGenerator() },
-                { typeof(double).GetHashCode(), new DoubleGenerator() },
-                { typeof(float).GetHashCode(), new FloatGenerator() },
-                { typeof(long).GetHashCode(), new LongGenerator() },
-                { typeof(byte).GetHashCode(), new ByteGenerator() },
-                { typeof(short).GetHashCode(), new ShortGenerator() },
-                { typeof(char).GetHashCode(), new CharGenerator() },
-                { typeof(string).GetHashCode(), new StringGenerator() },
-                { typeof(DateTime).GetHashCode(), new DateGenerator() }
-            };
+            generatorsList = new Dictionary<int, IGenerator>();
             creationsStack = new Dictionary<int, int>();
+            InitPlugins(pluginsPath);
+        }
+
+        private void InitPlugins(string pluginsPath)
+        {
+            string[] files = System.IO.Directory.GetFiles(pluginsPath, "*.dll");
+            
+            foreach (string file in files)
+            {
+                Assembly assembly = Assembly.Load(File.ReadAllBytes(file));
+                foreach (Type type in assembly.GetTypes())
+                {
+                    Type iface = type.GetInterface("IGenerator");
+                    if (iface != null)
+                    {
+                        IGenerator generator = (IGenerator)Activator.CreateInstance(type);
+                        if (!generatorsList.ContainsKey(generator.TargetType.GetHashCode()))
+                            generatorsList.Add(generator.TargetType.GetHashCode(), generator);
+                    }
+                }
+            }
         }
 
         private object CreateByConstructor(Type T)
@@ -122,7 +134,7 @@ namespace FakerLib
             return res;
         }
 
-        public T Create<T>() where T: DTO, new()
+        public T Create<T>() where T: DTO
         {
             return (T)GenerateDTO(typeof(T));
         }
