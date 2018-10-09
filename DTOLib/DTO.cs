@@ -21,7 +21,7 @@ namespace DTOLib
         public DateTime dat;
         public string str;
         public int[] array;
-        public DTO1 dto;
+        public DTO2 dto2;
 
         public DTO1() { }
 
@@ -29,5 +29,12 @@ namespace DTOLib
         {
             protectedField = a;
         }
+    }
+
+    public class DTO2 : DTO
+    {
+        public DTO1 dto1;
+        public bool BoolProperty { get; set; }
+        public Enum UnsuppotredType;
     }
 }

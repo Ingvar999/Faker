@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringGenerator", "StringGe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateGenerator", "DateGenerator\DateGenerator.csproj", "{AADEECA1-DF54-46E2-8006-3DF99E842C3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerTest", "FakerTest\FakerTest.csproj", "{5A22D2A7-BBA6-4398-BEF1-E45D40A67588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializeLib", "..\Tracer\MainApp\SerializeLib\SerializeLib.csproj", "{40889D6E-0526-49DE-8182-59EEDC929749}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{AADEECA1-DF54-46E2-8006-3DF99E842C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AADEECA1-DF54-46E2-8006-3DF99E842C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AADEECA1-DF54-46E2-8006-3DF99E842C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A22D2A7-BBA6-4398-BEF1-E45D40A67588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A22D2A7-BBA6-4398-BEF1-E45D40A67588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A22D2A7-BBA6-4398-BEF1-E45D40A67588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A22D2A7-BBA6-4398-BEF1-E45D40A67588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40889D6E-0526-49DE-8182-59EEDC929749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40889D6E-0526-49DE-8182-59EEDC929749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40889D6E-0526-49DE-8182-59EEDC929749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40889D6E-0526-49DE-8182-59EEDC929749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

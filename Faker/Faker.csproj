@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Tracer\MainApp\SerializeLib\SerializeLib.csproj">
+      <Project>{40889d6e-0526-49de-8182-59eedc929749}</Project>
+      <Name>SerializeLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTOLib\DTOLib.csproj">
       <Project>{b2d11516-f0b0-41f5-b05a-f8a2cf2481ee}</Project>
       <Name>DTOLib</Name>

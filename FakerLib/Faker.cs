@@ -80,7 +80,7 @@ namespace FakerLib
         {
             if (creationsStack.TryGetValue(T.GetHashCode(), out int value))
             {
-                if (value >= 3)
+                if (value >= 2)
                     return null;
                 creationsStack[T.GetHashCode()] = value + 1;
             }
