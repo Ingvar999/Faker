@@ -17,7 +17,7 @@ namespace DTOLib
         public byte byteField;
         public char charField;
         protected int protectedField;
-        public int Property { get; set; }
+        public int Property { get; }
         public DateTime dat;
         public string str;
         public int[] array;

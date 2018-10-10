@@ -48,7 +48,7 @@ namespace FakerTest
         {
             Setup();
             RecursiveDTO obj = faker.Create<RecursiveDTO>();
-            Assert.AreNotEqual(obj.dto, 0);
+            Assert.IsNotNull(obj.dto);
         }
     }
 }

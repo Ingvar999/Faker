@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 using Interface;
 using System.IO;
 using System.Reflection;
@@ -9,7 +8,7 @@ using DTOLib;
 
 namespace FakerLib
 {
-    public class Faker
+    public class Faker : IFaker
     {
         private Dictionary<int, IGenerator> generatorsList;
         private Dictionary<int, int> creationsStack;
@@ -109,7 +108,7 @@ namespace FakerLib
                     }
                 }
             }
-            PropertyInfo[] properties = T.GetProperties();
+            PropertyInfo[] properties = T.GetProperties(BindingFlags.SetProperty | BindingFlags.Instance);
             foreach (var property in properties)
             {
                 if (property.PropertyType.IsArray)
@@ -134,7 +133,7 @@ namespace FakerLib
             return res;
         }
 
-        public T Create<T>() where T: DTO
+        public T Create<T>() where T : DTO
         {
             return (T)GenerateDTO(typeof(T));
         }
